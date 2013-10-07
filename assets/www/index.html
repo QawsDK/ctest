@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Cykelruteplanlægger v.0.1 alpha</title>
+		<link rel="stylesheet" type="text/css" href="css/dx.common.css" />
+		<link rel="stylesheet" type="text/css" href="css/dx.ios.default.css" />
+		<link rel="stylesheet" type="text/css" href="css/dx.android.holo-dark.css" />
+		<link rel="stylesheet" type="text/css" href="css/dx.desktop.default.css" />
+		<link rel="stylesheet" type="text/css" href="css/dx.win8.black.small.css" />
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/knockout-2.2.1.js"></script>
+		<script type="text/javascript" src="js/globalize.min.js"></script>
+		<script type="text/javascript" src="js/dx.phonejs.js"></script>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script src="js/leaflet.js"></script>
+		<link rel="stylesheet" href="css/leaflet.css" />
+		<script src="http://maps.google.com/maps/api/js?v=3&amp;sensor=true"></script>
+		<script src="js/L.Control.Locate.js"></script>
+		<link rel="stylesheet" href="css/L.Control.Locate.css">
+		<script src="js/google.js"></script>
+		<script type="text/javascript">
+$(document).ready(function(){
+$.ajax({
+	type: "GET",
+	url: "http://62.242.40.24/routeplanner/rwnetserver.php?network=1&via=55.39850700802694,10.41035862197873;55.39906835199882,10.387914805221499&routetype=SETFASTEST",
+	dataType: "xml"
+	})
+	.done(function(data) {
+		var t = data.getElementsByTagName('coordinates');
+		for(var i = 0; i < t.length; i++){
+			document.getElementById('test').innerHTML += t[0].firstChild.data+'<br>';
+		}
+	});
+});
+</script>
+</head>
+<body>
+<div id="test"></div>
+</body>
+</html>
